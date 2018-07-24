@@ -1,3 +1,5 @@
+import com.sun.prism.shader.AlphaTexture_RadialGradient_AlphaTest_Loader;
+
 import java.net.URL;
 import java.sql.*;
 import java.util.Date;
@@ -45,13 +47,13 @@ public class Main {
 
 
             // retrieve data and save resulting QueryResultObject to a variable
-            QueryResultObject qro = aggregateData(conn, stmt, date, symbol);
+            QueryResultObject qro = aggregateData(stmt, date, symbol);
 
             // prompt user to select desired information, which is then printed to the console from the QueryResultObject
             System.out.println("What would you like to know? A: Highest price of a stock for given date. B: Lowest price of a stock for given date. C: Total volume traded of a stock for a given date. " +
                     "D: Closing price of a stock for given date. E: All of the above. \n");
             String choice = sc.nextLine();
-            printData(qro, choice);
+            printDataByDate(qro, choice);
 
 
         } catch (Exception e) {
@@ -73,13 +75,13 @@ public class Main {
      * Method to get a daily aggregated view of the following data:
      * Highest price of a stock for a given date,
      * lowest price of a stock for a given date,
-     * total volume traded of a stock for a given date
-     * @param conn
+     * total volume traded of a stock for a given date,
+     * closing price of a stock for a given date
      * @param stmt
      * @param date
      * @return
      */
-    public static QueryResultObject aggregateData(Connection conn, Statement stmt, Date date, String symbol) throws SQLException {
+    public static QueryResultObject aggregateData(Statement stmt, Date date, String symbol) throws SQLException {
         // call SQL queries and save ResultSet Strings to a QueryResultObject
         String SQLmax = "SELECT price FROM stocks_table WHERE price = (SELECT MAX(price) FROM stocks_table WHERE date_only = '"+date+"' AND symbol = '"+symbol+"')";
         String SQLmin = "SELECT price FROM stocks_table WHERE price = (SELECT MIN(price) FROM stocks_table WHERE date_only = '"+date+"' AND symbol = '"+symbol+"')";
@@ -121,11 +123,12 @@ public class Main {
     }
 
 
+
     /**
-     * Method to print resulting data from QRO
+     * Method to print resulting data from QRO when user specifies date
      */
 
-    public static void printData(QueryResultObject qro, String choice) {
+    public static void printDataByDate(QueryResultObject qro, String choice) {
         switch (choice) {
             case "A": System.out.println(qro.maxToString());
                 break;

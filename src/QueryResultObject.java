@@ -51,26 +51,46 @@ public class QueryResultObject {
 
 
     public String toString() {
-        return ("The highest price of stock " + symbol + " on " + date + " is $" + maxPrice + "\n" +
-                "The lowest price of stock " + symbol + " on " + date + " is $" + minPrice + "\n" +
-                "The total volume of stock " + symbol + " traded on " + date + " is " + totalVol + " units \n" +
-                "The closing price of stock " + symbol + " on " + date + "is $" + closingPrice);
+        if (maxPrice == 0 || minPrice == 0 || totalVol == 0 || closingPrice == 0) {
+            return "Sorry, no data for that date and/or stock";
+        } else {
+            return ("The highest price of stock " + symbol + " on " + date + " is $" + maxPrice + "\n" +
+                    "The lowest price of stock " + symbol + " on " + date + " is $" + minPrice + "\n" +
+                    "The total volume of stock " + symbol + " traded on " + date + " is " + totalVol + " units \n" +
+                    "The closing price of stock " + symbol + " on " + date + " is $" + closingPrice);
+        }
     }
 
     public String maxToString() {
-        return ("The highest price of stock " + symbol + " on " + date + " is $" + maxPrice);
+        if (maxPrice == 0) {
+            return "Sorry, no data for that date and/or stock";
+        } else {
+            return ("The highest price of stock " + symbol + " on " + date + " is $" + maxPrice);
+        }
     }
 
     public String minToString() {
-        return ("The lowest price of stock " + symbol + " on " + date + " is $" + minPrice);
+        if (minPrice == 0) {
+            return "Sorry, no data for that date and/or stock";
+        } else {
+            return ("The lowest price of stock " + symbol + " on " + date + " is $" + minPrice);
+        }
     }
 
     public String volToString() {
-        return ("The total volume of stock " + symbol + " traded on " + date + " is " + totalVol + " units");
+        if (totalVol == 0) {
+            return "Sorry, no data for that date and/or stock";
+        } else {
+            return ("The total volume of stock " + symbol + " traded on " + date + " is " + totalVol + " units");
+        }
     }
 
     public String closingToString() {
-        return ("The closing price of stock " + symbol + " on " + date + " is $" + closingPrice);
+        if (closingPrice == 0) {
+            return "Sorry, no data for that date and/or stock";
+        } else {
+            return ("The closing price of stock " + symbol + " on " + date + " is $" + closingPrice);
+        }
     }
 
 }
