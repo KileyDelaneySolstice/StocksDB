@@ -28,11 +28,10 @@ public class Main {
 
 
             // code to create SQL table from data, commented out so as to avoid conflicts
-            stmt.executeUpdate("CREATE TABLE stocks_table (symbol VARCHAR(50), price DECIMAL(10,2), volume DECIMAL, date TIMESTAMP)");
-
-            ReadJson.saveToDB(jsonURL, stmt);
-            stmt.executeUpdate("ALTER TABLE stocks_table ADD COLUMN date_only date");
-            stmt.executeUpdate("UPDATE stocks_table SET date_only = cast(date as date)");
+//            stmt.executeUpdate("CREATE TABLE stocks_table (symbol VARCHAR(50), price DECIMAL(10,2), volume DECIMAL, date TIMESTAMP)");
+//            ReadJson.saveToDB(jsonURL, stmt);
+//            stmt.executeUpdate("ALTER TABLE stocks_table ADD COLUMN date_only date");
+//            stmt.executeUpdate("UPDATE stocks_table SET date_only = cast(date as date)");
 
 
             // prompt user to input date and save in a variable for future use
